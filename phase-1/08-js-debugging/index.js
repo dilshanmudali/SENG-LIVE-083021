@@ -63,16 +63,16 @@ function deletePoke(card) {
 }
 
 function getPokemons() {
-  fetch("http://localhost:3000/pokemons")
+  fetch("http://localhost:3000/pokemon")
     .then(function (response) {
-      return response.json;
-    }
+      return response.json();
+    })
     .then(function (pokemonsArray) {
-      pokemon.forEach(function (pokemon) {
+      pokemonsArray.characters.forEach(function (pokemon) {
         renderPokemon(pokemon);
       });
     })
-}
+  }
 
 function init() {
   getPokemons();
