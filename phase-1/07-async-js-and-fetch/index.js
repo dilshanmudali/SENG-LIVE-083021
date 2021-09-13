@@ -1,11 +1,11 @@
 
-
+const BASE_URL = 'http://localhost:3000/pokemons'
 const pokeContainer = document.getElementById("poke-container");
 const pokeForm = document.getElementById("poke-form");
 // const url = "http://localhost:3000/pokemons"
 
 function getPokemon(){
-  fetch('http://localhost:3000/pokemons')
+  fetch(BASE_URL)
   .then(function(response){
     return response.json()
   })
@@ -53,20 +53,30 @@ function renderPokemon(pokemon) {
   pokeContainer.appendChild(pokeCard);
 }
 
-function createPokemon(event) {
+ function createPokemon(event) {
   event.preventDefault();
   const name = document.querySelector("#name-input").value;
-  const img = event.target.querySelector("#img-input").value;
+  const image = event.target.querySelector("#img-input").value;
 
   const pokemon = {
     name: name,
-    img: img,
-    likes: 0,
-    id: 6, // NEEDS TO CHANGE
+    img: image,
+    likes: 0
   };
-  renderPokemon(pokemon);
-  pokeForm.reset();
+ 
+  const configObj = {
+    method: "POST",
+    headers: {
+      'Content-Type' : 'application/json'
+    },
+    body: JSON.stringify(pokemon)
 }
+
+  fetch(BASE_URL, configObj)
+    .then(res => res.json())
+    .then(pokemon => renderPokemon(pokemon))
+    pokeForm.reset();
+ }
 
 function increaseLikes(pokemon, likesNum) {
   ++pokemon.likes;
