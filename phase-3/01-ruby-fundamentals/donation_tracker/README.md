@@ -35,7 +35,7 @@
 - Hashes
 - Loops
 - Iteration
-- puts
+- puts vs print
 - binding.pry
 
 ### How to work on this project:
