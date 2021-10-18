@@ -4,8 +4,7 @@ class Donation
     attr_reader :id
 
     def initialize(attributes) 
-        attributes.each do |key, value| 
-            binding.pry
+        attributes.each do |key, value|
             if self.respond_to?("#{key.to_s}=") 
                 self.send("#{key.to_s}=", value) 
             end 
@@ -13,7 +12,7 @@ class Donation
 
     end
 
-    def save
+    def save 
         if self.id
             self.update
         else 
@@ -24,7 +23,7 @@ class Donation
             DB.execute(sql, self.amount, self.date, self.organization_id)
             @id = DB.last_insert_row_id
         end 
-        self 
+        self  
     end
 
     def update 
@@ -61,3 +60,4 @@ class Donation
     end 
 
 end 
+
