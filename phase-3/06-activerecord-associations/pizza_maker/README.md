@@ -7,3 +7,22 @@ For this exercise:
 (Don't forget to add these associations to the models as well)
 5. Make sure to run the migrations and confirm that the table has been created. Hint: the schema file is a great resource for investigating database structures
 6. Create a seeds file and add some new pizza's, ingredients and pizza ingredients. Pizza ingredients should be associated to a particular pizza and ingredient. Don't forget to seed your data.
+
+
+
+domain modeling:
+
+pizza
+- name: string
+- desc: text
+- has_many :pizza_ingredients
+- has_many :ingredients, through: :pizza_ingredients
+
+ingredients
+- name: string
+- has_many :pizza_ingredients
+- has_many :pizzas, through: :pizza_ingredients
+
+pizza_ingredients(join table) - purpose: 
+- belong to pizza
+- belong to ingredient

@@ -10,22 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_19_192015) do
+ActiveRecord::Schema.define(version: 2021_10_19_200324) do
 
-  create_table "donations", force: :cascade do |t|
-    t.integer "amount"
-    t.integer "date"
-    t.boolean "completed"
-    t.integer "organization_id"
-    t.integer "donor_id"
-  end
-
-  create_table "donors", force: :cascade do |t|
+  create_table "ingredients", force: :cascade do |t|
     t.string "name"
   end
 
-  create_table "organizations", force: :cascade do |t|
+  create_table "pizza_ingredients", force: :cascade do |t|
+    t.integer "pizza_id"
+    t.integer "ingredient_id"
+  end
+
+  create_table "pizzas", force: :cascade do |t|
     t.string "name"
+    t.text "desc"
   end
 
 end

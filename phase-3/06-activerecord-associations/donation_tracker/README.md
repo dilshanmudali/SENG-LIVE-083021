@@ -20,3 +20,31 @@
 - has_many
 - belongs_to
 - has many, through 
+
+
+### Domain modeling 
+
+- Donation (child object)
+    - amount: string
+    - date: integer
+    - completed: boolean
+    - organization_id: integer
+    - belongs to organization 
+
+- Organization 
+    - name: string
+    - has many donations 
+
+
+### how to associate donations with organization
+donation = Donation.create(amount: 5000, date: 10/19/21, completed: false, organization_id: 7) - best practice more performant
+donation = Donation.create(amount: 5000, date: 10/19/21, completed: false, organization: organization)
+
+
+if I wanted to see all the donations made to an organization
+
+SELECT * FROM donations WHERE donation.organization_id = organization.id
+
+
+Has_many through is many to many relationship
+relationship between two completely different tables is dependent on a join table
